@@ -1,0 +1,11 @@
+﻿@model int
+
+<a asp-area="" asp-controller="Cart" asp-action="Index">
+    <button type="button" class="btn btn-outline-primary position-relative me-3">
+        Корзина <i class="bi bi-cart4"></i>
+        @if (Model != 0)
+        {
+            <span class="position-absolute start-80 badge rounded-pill bg-danger">@Model </span>
+        }
+    </button>
+</a>

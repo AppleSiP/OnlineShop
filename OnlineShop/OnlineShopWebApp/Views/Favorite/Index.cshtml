@@ -1,0 +1,61 @@
+﻿@model List<ItemViewModel>
+
+@if (Model == null || Model.Count == 0)
+{
+    <h3>Нет избранных товаров</h3>
+    <a class="btn btn-secondary"
+        asp-area=""
+        asp-controller="Home"
+        asp-action="Index" role="button">
+        Продолжить покупки
+    </a>
+}
+else
+{
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-3 card shadow">
+                <a
+                    asp-area=""
+                    asp-controller="Product"
+                    asp-action="Index"
+                    asp-route-id="@item.Id">
+                    <img class="card-img-top" src=@item.ImagePath alt="Изображение товара" />
+                </a>
+                <div class="card-body">
+                    <a style="color:blue"
+                        asp-area=""
+                        asp-controller="Product"
+                        asp-action="Index"
+                        asp-route-id="@item.Id">
+                        <h5>@item.Name</h5>
+                    </a>
+                    <h5>@item.Cost ₽</h5>
+                    <a class="btn btn-primary"
+                        asp-area=""
+                        asp-controller="Cart"
+                        asp-action="Add"
+                        asp-route-itemId="@item.Id"
+                        role="button">
+                        Добавить в корзину
+                    </a>
+                    <a class="btn btn-outline-secondary" data-toggle="tooltip" title="Сравнить"
+                        asp-area=""
+                        asp-controller="Compare"
+                        asp-action="Add"
+                        asp-route-itemId="@item.Id" role="button">
+                        <i class="bi bi-card-checklist"></i>
+                    </a>
+                    <a class="btn btn-outline-secondary" data-toggle="tooltip" title="Удалить из избранного"
+                        asp-area=""
+                        asp-controller="Favorite"
+                        asp-action="Remove"
+                        asp-route-itemId="@item.Id" role="button">
+                        <i class="bi bi-trash3-fill"></i>
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+}

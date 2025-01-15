@@ -1,0 +1,72 @@
+﻿@model CartViewModel
+
+@if (Model == null || Model.Amount == 0)
+{
+    <h3>Корзина пустая</h3>
+    <a class="btn btn-secondary"
+        asp-area=""
+        asp-controller="Home"
+        asp-action="Index" role="button">
+        Продолжить покупки
+    </a>
+}
+else
+{
+    <h3>Ваша корзина</h3>
+    <table class="table table-striped table-hover" border="1">
+        <thead>
+            <tr>
+                <th>Наименование</th>
+                <th>Цена за ед.</th>
+                <th>Количество</th>
+                <th>Стоимость</th>
+            </tr>
+        </thead>
+        @foreach (var position in Model.Items)
+        {
+            <tr>
+                <th>@position.Item.Name</th>
+                <th>@position.Item.Cost ₽</th>
+                <th>
+                    <a class="btn btn-outline-dark btn-sm"
+                        asp-area=""
+                        asp-controller="Cart"
+                        asp-action="Remove"
+                        asp-route-itemId="@position.Item.Id" role="button">-
+                    </a>
+                    @position.Amount
+                    <a class="btn btn-outline-dark btn-sm"
+                        asp-area=""
+                        asp-controller="Cart"
+                        asp-action="Add"
+                        asp-route-itemId="@position.Item.Id"
+                        role="button">+
+                    </a>
+                </th>
+                <th>@position.Cost ₽</th>
+            </tr>
+        }
+    </table>
+    <div>
+        <h3>Товары (@Model.Amount)</h3>
+        <h3>Итого: @Model.Cost ₽</h3>
+    </div>
+    <a class="btn btn-success me-md-3"
+        asp-area=""
+        asp-controller="Order"
+        asp-action="Index" role="button">
+        Оформить заказ
+    </a>
+    <a class="btn btn-secondary me-md-3"
+        asp-area=""
+        asp-controller="Home"
+        asp-action="Index" role="button">
+        Продолжить покупки
+    </a>
+    <a class="btn btn-warning me-md-3"
+        asp-area=""
+        asp-controller="Cart"
+        asp-action="Clear" role="button">
+        Очистить корзину
+    </a>
+}

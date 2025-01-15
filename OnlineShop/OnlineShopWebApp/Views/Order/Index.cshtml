@@ -1,0 +1,39 @@
+﻿@model UserDeliveryInfoViewModel
+
+@await Component.InvokeAsync("OrderCart")
+
+<form method="post">
+
+    <div class="text-danger font-weight-bold" asp-validation-summary="All"></div>
+
+    <div class="col">
+        <div class="col-md-3 mx-auto mb-3">
+            <label asp for="Name">Введите Ф.И.О.</label>
+            <input class="form-control mb-1" placeholder="Иванов Иван Иванович"
+                asp-for="Name" />
+            <span asp-validation-for="Name" />
+        </div>
+
+        <div class="col-md-3 mx-auto mb-3">
+            <label asp for="Address">Введите адрес доставки</label>
+            <input class="form-control mb-1" placeholder="г.Пермь ул.Сибирская д.34 оф.7"
+                asp-for="Address" />
+            <span asp-validation-for="Address" />
+        </div>
+
+        <div class="col-md-3 mx-auto mb-3">
+            <label asp for="Phone">Введите номер телефона</label>
+            <input class="form-control mb-1" placeholder="89991112233"
+                asp-for="Phone" />
+            <span asp-validation-for="Phone" />
+        </div>
+        <div class="col-md-3 mx-auto mb-3">
+            <button type="submit" class="btn btn-success"
+                asp-area=""
+                asp-controller="Order"
+                asp-action="Buy">
+                Оформить заказ
+            </button>
+        </div>
+    </div>
+</form>

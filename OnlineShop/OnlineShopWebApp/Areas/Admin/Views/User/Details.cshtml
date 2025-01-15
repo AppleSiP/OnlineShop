@@ -1,0 +1,53 @@
+﻿@model UserAccountViewModel
+<div class="row">
+    @await Html.PartialAsync("AdminLeftMenu")
+
+    <div class="col-6">
+        <table class="table">
+            <tr>
+                <td>E-mail</td>
+                <td>@Model.Email</td>
+            </tr>
+            <tr>
+                <td>Телефон</td>
+                <td>@Model.Phone</td>
+            </tr>
+            <tr>
+                <td>Имя</td>
+                <td>@Model.FirstName</td>
+            </tr>
+            <tr>
+                <td>Фамилия</td>
+                <td>@Model.LastName</td>
+            </tr>
+        </table>
+        <button class="btn btn-secondary dropdown-toggle"
+            type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Действия
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item"
+                asp-area="Admin"
+                asp-controller="User"
+                asp-action="ChangePassword"
+                asp-route-email="@Model.Email">
+                Смена пароля
+            </a>
+            <a class="dropdown-item" 
+                asp-area="Admin"
+                asp-controller="User"
+                asp-action="Edit"
+                asp-route-email="@Model.Email">
+                Редактировать
+            </a>
+            <a class="dropdown-item"
+                asp-area="Admin"
+                asp-controller="User" 
+                asp-action="Remove" 
+                asp-route-email="@Model.Email">
+                Удалить
+            </a>
+        </div>
+    </div>
+</div>

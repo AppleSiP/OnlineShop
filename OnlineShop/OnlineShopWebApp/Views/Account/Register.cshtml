@@ -1,0 +1,67 @@
+﻿@model RegisterViewModel
+
+﻿<form method="post">
+    <div>
+        <h3>Регистрация</h3>
+    </div>
+
+    <div class="text-danger font-weight-bold" asp-validation-summary="ModelOnly"></div>
+    <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
+
+    <div class="row">
+        <div class="col-8">
+            <label asp for="Email">E-mail:</label>
+            <input class="form-control mb-1" placeholder="example@mail.ru" asp-for="Email" />
+            <span asp-validation-for="Email" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-8">
+            <label asp for="Phone">Телефон:</label>
+            <input class="form-control mb-1" placeholder="89998887766" asp-for="Phone" />
+            <span asp-validation-for="Phone" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-8">
+            <label asp for="FirstName">Имя:</label>
+            <input class="form-control mb-1" placeholder="Имя" asp-for="FirstName" />
+            <span asp-validation-for="FirstName" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-8">
+            <label asp for="LastName">Фамилия:</label>
+            <input class="form-control mb-1" placeholder="Фамилия" asp-for="LastName" />
+            <span asp-validation-for="LastName" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-8">
+            <label asp for="Password">Пароль:</label>
+            <input type="password" class="form-control mb-1" asp-for="Password" />
+            <span asp-validation-for="Password" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-8">
+            <label asp for="ConfirmPassword">Повторите пароль:</label>
+            <input type="password" class="form-control mb-1" asp-for="ConfirmPassword" />
+            <span asp-validation-for="ConfirmPassword" />
+        </div>
+    </div>
+
+    <div>
+        <button class="btn btn-success position-relative me-2" type="submit"
+            asp-area=""
+            asp-controller="Account"
+            asp-action="Register">
+            Зарегистрироваться
+        </button>
+    </div>
+</form>

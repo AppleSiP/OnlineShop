@@ -1,0 +1,76 @@
+﻿@model OrderViewModel
+
+<div class="row">
+    @await Html.PartialAsync("AdminLeftMenu")
+
+    <div class="col-9">
+        <h3>Состав заказа</h3>
+        <table class="table table-striped table-hover" border="1">
+            <thead>
+                <tr>
+                    <th>Наименование</th>
+                    <th>Цена за ед.</th>
+                    <th>Количество</th>
+                    <th>Стоимость</th>
+                </tr>
+            </thead>
+            @foreach (var position in Model.Items)
+            {
+                <tr>
+                    <th>@position.Item.Name</th>
+                    <th>@position.Item.Cost ₽</th>
+                    <th>@position.Amount</th>
+                    <th>@position.Cost ₽</th>
+                </tr>
+            }
+        </table>
+        <div>
+            <h3>Товары (@Model.Items.Sum(item => item.Amount))</h3>
+            <h3>Итого: @Model.Items.Sum(item => item.Cost) ₽</h3>
+        </div>
+
+        <form method="post">
+            <div class="row">
+                <div class="col-6">
+                    <table class="table">
+                        <tr>
+                            <td>Дата и Время</td>
+                            <td>@Model.CreatedDataTime.ToString("f")</td>
+                        </tr>
+                        <tr>
+                            <td>Адрес Доставки</td>
+                            <td>@Model.UserDeliveryInfo.Address</td>
+                        </tr>
+                        <tr>
+                            <td>Ф.И.О.</td>
+                            <td>@Model.UserDeliveryInfo.Name</td>
+                        </tr>
+                        <tr>
+                            <td>Телефон</td>
+                            <td>@Model.UserDeliveryInfo.Phone</td>
+                        </tr>
+                        <tr>
+                            <td>Статус заказа</td>
+                            <td>
+                                <select 
+                                    asp-for="@Model.Status"
+                                    asp-items="@Html.GetEnumSelectList(typeof(OrderStatusViewModel))"
+                                    class="form-control">
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div>
+                <button class="btn btn-success position-relative me-2" type="submit"
+                    asp-area="Admin"
+                    asp-controller="Order"
+                    asp-action="UpdateStatus"
+                    asp-route-orderId="@Model.Id">
+                    Обновить статус
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

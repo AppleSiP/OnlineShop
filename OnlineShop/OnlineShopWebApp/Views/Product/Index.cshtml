@@ -1,0 +1,43 @@
+﻿@model ItemViewModel
+
+<div class="row">
+    <div class="col-6">
+        <img class="card-img-top" src=@Model.ImagePath alt="Изображение товара" />
+    </div>
+
+    <div class="col-6">
+        <h3>@Model.Name</h3>
+        <h3>Цена: @Model.Cost ₽</h3>
+        <h3>Материал: @Model.Material</h3>
+        <h3>Описание: @Model.Description</h3>
+        <div class="col-6">
+            <a class="btn btn-primary"
+                asp-area=""
+                asp-controller="Cart"
+                asp-action="Add"
+                asp-route-itemid="@Model.Id" role="button">
+                Добавить в корзину
+            </a>
+            <a class="btn btn-outline-danger my-2" data-toggle="tooltip" title="Добавить в избранное"
+                asp-area=""
+                asp-controller="Favorite"
+                asp-action="Add"
+                asp-route-itemId="@Model.Id" role="button">
+                <i class="bi bi-heart"></i>
+            </a>
+            <a class="btn btn-outline-secondary" data-toggle="tooltip" title="Сравнить"
+                asp-area=""
+                asp-controller="Compare"
+                asp-action="Add"
+                asp-route-itemId="@Model.Id" role="button">
+                <i class="bi bi-card-checklist"></i>
+            </a>
+            <a class="btn btn-secondary"
+                asp-area=""
+                asp-controller="Home"
+                asp-action="Index" role="button">
+                Продолжить покупки
+            </a>
+        </div>
+    </div>
+</div>
